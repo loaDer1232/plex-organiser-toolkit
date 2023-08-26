@@ -3,7 +3,8 @@ import os
 strSeason: str
 rootPath: str = input(r"Enter the path:  ") #Here put the path of your folder where your images are stored
 newName: str = input("Enter name: ") #Here, enter the name you want your images to have
-
+totalEpisodes: int = 0
+season: int = 1
 
 def iFormat(i: int)-> str:
     if i < 10:
@@ -17,19 +18,29 @@ def season_Format(i: int)-> str:
     else:
         return str(i)
 
-
-totalEpisodes: int = 0
-season: int = 1
-for path, subDir, files in os.walk(rootPath):
+def nested(subDir: list[str]):
+    global season
     for i in range(len(subDir)):
         subPath: str = os.path.join(path,subDir[i])
-        episode: int = 1
-        for file in os.listdir(subPath):
-            ext: str = os.path.splitext(file)
-            newFileName = f"{newName} S{season_Format(season)}E{iFormat(episode)}{ext[1]}" 
-            os.rename(os.path.join(subPath, file), os.path.join(subPath, newFileName))
-            episode += 1
-        totalEpisodes += (episode - 1)
+        not_Nested(subPath)
         season += 1
+
+
+def not_Nested(fullPath: str):
+    global totalEpisodes
+    episode: int = 1
+    for file in os.listdir(fullPath):
+        ext: str = os.path.splitext(file)
+        newFileName = f"{newName} S{season_Format(season)}E{iFormat(episode)}{ext[1]}" 
+        os.rename(os.path.join(fullPath, file), os.path.join(fullPath, newFileName))
+        episode += 1
+    totalEpisodes += (episode - 1)
+
+
+for path, subDir, files in os.walk(rootPath):
+    if len(subDir) == 0:
+       not_Nested(rootPath)
+    else:
+        nested(subDir)
     input(f"Renamed {totalEpisodes} files in {season - 1} folders!!")
     exit()
