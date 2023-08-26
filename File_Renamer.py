@@ -1,10 +1,29 @@
 import os
+import argparse
 
-strSeason: str
-rootPath: str = input(r"Enter the path:  ") #Here put the path of your folder where your images are stored
-newName: str = input("Enter name: ") #Here, enter the name you want your images to have
+parser = argparse.ArgumentParser(description="plex formating tool to fix tv file names")
+group = parser.add_mutually_exclusive_group()
+group.add_argument("-v", "--verbose", help="incresses output verbosity", action="store_true")
+group.add_argument("-q", "--quiet", help="removes console feedback", action="store_true")
+parser.add_argument("-cu", "--cleanup", help="removes files not in list of approved video files", action="store_true")
+parser.add_argument("-l", "--log", help="outputs file changes to log file", action="store_true")
+parser.add_argument("path", help="speicfiys path")
+parser.add_argument("name", help="the new name for the files")
+args = parser.parse_args()
+
+
+logStr: str = ""
+rootPath: str = args.path
+newName = args.name
 totalEpisodes: int = 0
 season: int = 1
+filesDeleted: int = 0
+validFormats: list[str] = ['.mkv', ".asf", ".mp4" ".srt", ".txt"]
+
+def log():
+    with open(f'{rootPath}\log.txt','a') as log:
+        log.write(logStr)
+
 
 def iFormat(i: int)-> str:
     if i < 10:
@@ -27,20 +46,36 @@ def nested(subDir: list[str]):
 
 
 def not_Nested(fullPath: str):
-    global totalEpisodes
+    global totalEpisodes, filesDeleted, logStr
     episode: int = 1
     for file in os.listdir(fullPath):
         ext: str = os.path.splitext(file)
+        if ext[1] == '':
+            continue
         newFileName = f"{newName} S{season_Format(season)}E{iFormat(episode)}{ext[1]}" 
         os.rename(os.path.join(fullPath, file), os.path.join(fullPath, newFileName))
+        if(args.cleanup) and (ext not in validFormats):
+            os.remove(os.path.join(fullPath, newFileName))
+            if args.verbose:
+                print(f"deleted {file}")
+            logStr += f"deleted {file}\n"
+            filesDeleted += 1
+            continue
+        if args.verbose:
+            print(f"renamed {file} to {newFileName}")
+        logStr += f"renamed {file} to {newFileName}\n"
         episode += 1
     totalEpisodes += (episode - 1)
-
 
 for path, subDir, files in os.walk(rootPath):
     if len(subDir) == 0:
        not_Nested(rootPath)
     else:
         nested(subDir)
-    input(f"Renamed {totalEpisodes} files in {season - 1} folders!!")
+    if args.quiet:
+        exit()
+    if args.log:
+        logStr += f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders!!"
+        log()
+    input(f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders!!")
     exit()
