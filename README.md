@@ -1,15 +1,15 @@
 # plex-organiser-tools
-this is an open source tool for name tv episode into the plex format
+This is an open source tool for renaming tv episode into the plex format
 feel free to use it
 ## use:
-1. when propmted for Path: enter the direcotry that the show is contaed in
-2. when asked for name enter the new name for the episodes
+1. When propmted for Path: enter the directory that the show is contained in
+2. When asked for name enter the new name for the episodes
 
 ## style guide: 
-1. varibles should be in camelCase and have type hints
-2. functions are camelCase with _ between each word and have type hints
-3. classes have capatilas ate the start and for each word and have descriptions and Attributes
-4. identation should be done with tabs     
+1. Varibles should be in camelCase and have type hints
+2. Functions are camelCase with _ between each word and have type hints
+3. Classes have capitals at the start and for each word and have descriptions and Attributes
+4. Identation should be done with tabs     
 
 Example
 ```
