@@ -77,7 +77,7 @@ def not_Nested(fullPath: str):
     episode: int = 1
     for file in os.listdir(fullPath):
         ext: tuple(str, str) = os.path.splitext(file)
-        if ext[1] == '':
+        if (ext[1] == '') or (ext[1] == ".srt"): #so that subtitles are ignored
             continue
         newFileName = namer(episode, ext[1])
         os.rename(os.path.join(fullPath, file), os.path.join(fullPath, newFileName))
