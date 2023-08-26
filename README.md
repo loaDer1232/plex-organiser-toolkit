@@ -16,6 +16,19 @@ File_Renamer.py [-h] [-v | -q] [-cu] [-l] path name
 |-q| --quiet|        removes console feedback|
 |-cu| --cleanup|     removes files not in list of approved video files|
 |-l| --log|   outputs file changes to log file|
+|-m|--movies| removes episode and season and names in movie format
+
+the log file is output into the working directory:   
+PATH\log.txt
+
+when using cleanup the allowed file types are:   
+|||
+|:-:|:-:|
+|mkv | avi|
+|mp4 |asf|
+|mov | srt|
+|wmv | MPEGTS|
+
 
 ## Style guide: 
 1. Varibles should be in camelCase and have type hints
