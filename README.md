@@ -1,5 +1,5 @@
 # plex-organiser-tools
-This is an open source tool for renaming tv episodes into the plex format,
+This is an open source tool for renaming tv episodes and movies into the plex format,
 feel free to use it
 ## use:
 File_Renamer.py [-h] [-v | -q] [-cu] [-l] path name
