@@ -2,8 +2,20 @@
 this is an open source tool for name tv episode into the plex format
 feel free to use it
 ## use:
-1. when propmted for Path: enter the direcotry that the show is contaed in
-2. when asked for name enter the new name for the episodes
+File_Renamer.py [-h] [-v | -q] [-cu] [-l] path name
+|positional arguments:| |   
+|:-:|:-:|
+|path | speicfiys path |  
+|name | the new name for the files|
+
+### options:
+|short name|long name|use|
+|:-:|:-:|:-|
+|-h| --help|         show this help message and exit|
+|-v| --verbose|      incresses output verbosity|
+|-q| --quiet|        removes console feedback|
+|-cu| --cleanup|     removes files not in list of approved video files|
+|-l| --log|   outputs file changes to log file|
 
 ## style guide: 
 1. varibles should be in camelCase and have type hints
