@@ -1,5 +1,5 @@
 # plex-organiser-tools
-this is an open source tool for name tv episode into the plex format
+This is an open source tool for renaming tv episodes into the plex format,
 feel free to use it
 ## use:
 File_Renamer.py [-h] [-v | -q] [-cu] [-l] path name
@@ -17,11 +17,11 @@ File_Renamer.py [-h] [-v | -q] [-cu] [-l] path name
 |-cu| --cleanup|     removes files not in list of approved video files|
 |-l| --log|   outputs file changes to log file|
 
-## style guide: 
-1. varibles should be in camelCase and have type hints
-2. functions are camelCase with _ between each word and have type hints
-3. classes have capatilas ate the start and for each word and have descriptions and Attributes
-4. identation should be done with tabs     
+## Style guide: 
+1. Varibles should be in camelCase and have type hints
+2. Functions are camelCase with _ between each word and have type hints
+3. Classes have capitals at the start and for each word and have descriptions and Attributes
+4. Identation should be done with tabs     
 
 Example
 ```
