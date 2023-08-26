@@ -28,9 +28,9 @@ def log():
 def cleaner(fullPath: str):
     global logStr, filesDeleted
     for file in os.listdir(fullPath):
-        ext: str = os.path.splitext(file)
-        if ext in validFormats:
-            continue
+        ext = os.path.splitext(file)
+        if ext[1] in validFormats:
+            return
         os.remove(os.path.join(fullPath, file))
         if args.verbose:
             print(f"deleted {file}")
@@ -66,9 +66,9 @@ def nested(subDir: list[str]):
     global season
     for i in range(len(subDir)):
         subPath: str = os.path.join(path,subDir[i])
-        not_Nested(subPath)
         if args.cleanup:
-            cleaner(subDir)
+           cleaner(subPath)
+        not_Nested(subPath)
         season += 1
 
 
@@ -76,22 +76,22 @@ def not_Nested(fullPath: str):
     global totalEpisodes, logStr
     episode: int = 1
     for file in os.listdir(fullPath):
-        ext: str = os.path.splitext(file)
+        ext: tuple(str, str) = os.path.splitext(file)
         if ext[1] == '':
             continue
         newFileName = namer(episode, ext[1])
         os.rename(os.path.join(fullPath, file), os.path.join(fullPath, newFileName))
         if args.verbose:
             print(f"renamed {file} to {newFileName}")
-        if args.cleanup:
-            cleaner(fullPath)
         logStr += f"renamed {file} to {newFileName}\n"
         episode += 1
     totalEpisodes += (episode - 1)
 
 for path, subDir, files in os.walk(rootPath):
     if len(subDir) == 0:
-       not_Nested(rootPath)
+        if args.cleanup:
+            cleaner(rootPath)
+        not_Nested(rootPath)
     else:
         nested(subDir)
     if args.quiet:
