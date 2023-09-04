@@ -37,8 +37,10 @@ def submit()-> None:
 
     if movie:
         dump = subprocess.run([pyver, "File_Renamer.py", "-m", path, name])
+        return None
     else:
         dump = subprocess.run([pyver, "File_Renamer.py", path, name])
+        return None
 
 def main()-> None:
     Label(window, text="pyhton function renamer", font=("bold", 13)).grid(row=1, column=1)
