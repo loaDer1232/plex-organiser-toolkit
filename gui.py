@@ -1,6 +1,6 @@
 from tkinter import Tk, filedialog, Label, Button, Entry, Checkbutton
 import subprocess
-import platform
+from platform import system
 
 class GUI:
     def __init__(self) -> None:
@@ -29,9 +29,9 @@ def pyCalc(os: str)-> str:
 def submit()-> None:
     path = c.getPath()
     name = nameEntry.get()
-    pyver = pyCalc(platform.system())
+    pyver = pyCalc(system())
 
-    if movie == True:
+    if movie:
         dump = subprocess.run([pyver, "File_Renamer.py", "-m", path, name])
     else:
         dump = subprocess.run([pyver, "File_Renamer.py", path, name])
