@@ -28,7 +28,7 @@ def pyCalc(os: str)-> str:
         case "Darwin":
             return "python3"
         case _:
-           exit(_ExitCode=1)
+           exit(code=1)
 
 def submit()-> None:
     path = c.getPath()
