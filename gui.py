@@ -19,7 +19,7 @@ set_appearance_mode("System")
 set_default_color_theme("blue")
 c = GUI()
 movie: bool = 0
-nameEntry = Entry(window, width=7, textvariable="")
+
 
 
 def pyCalc(os: str)-> str:
@@ -44,14 +44,6 @@ def submit()-> None:
     else:
         dump = subprocess.run([pyver, "File_Renamer.py", path, name])
         return None
-
-movieBox = CTkCheckBox(window, text='movie')
-nameEntry = CTkEntry(window, width=120, textvariable="")
-header = CTkLabel(window, text="pyhton function renamer", font=("bold", 13))
-newName = CTkLabel(window, text="enter new name:", font=("bold", 13))
-miscOpptions = CTkLabel(window, text="addtional opptions:", font=("bold", 13))
-fileLocation = CTkButton(window, text="Select File location", command=c.fileDialog ,width=50)
-submmitButton = CTkButton(window, text="submit", command=submit ,width=50)
 
 movieBox = CTkCheckBox(window, text='movie')
 nameEntry = CTkEntry(window, width=120, textvariable="")
