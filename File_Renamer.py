@@ -1,5 +1,6 @@
 import os
 import argparse
+import time
 
 parser = argparse.ArgumentParser(description="plex formating tool to fix tv file names")
 group = parser.add_mutually_exclusive_group()
@@ -87,6 +88,8 @@ def not_Nested(fullPath: str):
         episode += 1
     totalEpisodes += (episode - 1)
 
+
+start_time = time.time()
 for path, subDir, files in os.walk(rootPath):
     if len(subDir) == 0:
         if args.cleanup:
@@ -97,7 +100,7 @@ for path, subDir, files in os.walk(rootPath):
     if args.quiet:
         exit()
     if args.log:
-        logStr += f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders!!"
+        logStr += f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders in {time.time() - start_time} Seconds!!"
         log()
-    input(f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders!!")
+    input(f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders in {time.time() - start_time} Seconds!!")
     exit()
