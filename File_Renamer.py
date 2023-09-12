@@ -81,6 +81,7 @@ def nested(subDir: list[str]):
            cleaner(subPath)
         if subDir[i] == "Extras":
             os.rename(subPath, os.path.join(path, "Other"))
+            logStr += "renamed Extras to Other\n"
             continue
         if subDir[i] in extrasNames:
             continue
