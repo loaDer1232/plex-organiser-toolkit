@@ -57,6 +57,7 @@ strictFileMode = CTkCheckBox(window, text='Strict File Mode')
 log = CTkCheckBox(window, text='Log')
 
 nameEntry = CTkEntry(window, width=120, textvariable="")
+
 fileLocation = CTkButton(window, text="Select File location", command=c.fileDialog ,width=50)
 submmitButton = CTkButton(window, text="Submit", command=submit ,width=50)
 
