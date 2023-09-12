@@ -42,9 +42,9 @@ def submit():
 
 
 def main()-> None:
-    def sub():
-        c.submiter(movieBox.get(), nameEntry.get())
-        submit()
+    #def sub():
+       # c.submiter(movieBox.get(), nameEntry.get())
+        #submit()
     
     movieBox = CTkCheckBox(window, text='movie')
     nameEntry = CTkEntry(window, width=120, textvariable="")
@@ -52,7 +52,7 @@ def main()-> None:
     newName = CTkLabel(window, text="enter new name:", font=("bold", 13))
     miscOpptions = CTkLabel(window, text="addtional opptions:", font=("bold", 13))
     fileLocation = CTkButton(window, text="Select File location", command=c.fileDialog ,width=50)
-    submmitButton = CTkButton(window, text="submit", command=sub, width=50)
+    submmitButton = CTkButton(window, text="submit", command=submit, width=50)
 
     header.place(relx=0.5, anchor=N)
     newName.place(relx=0.3, rely=0.2, anchor=CENTER)
