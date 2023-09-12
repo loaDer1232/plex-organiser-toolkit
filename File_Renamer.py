@@ -66,6 +66,8 @@ def nested(subDir: list[str]):
     global season
     for i in range(len(subDir)):
         subPath: str = os.path.join(path,subDir[i])
+        if subDir[i] == "Extras":
+            os.rename(subPath, os.path.join(path, "other"))
         if args.cleanup:
            cleaner(subPath)
         not_Nested(subPath)
