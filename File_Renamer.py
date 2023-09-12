@@ -64,12 +64,25 @@ def namer(episode: int, ext: str)-> str:
 
 def nested(subDir: list[str]):
     global season
+    extrasNames = ["Behind The Scenes", 
+                   "Deleted Scenes", 
+                   "Featurettes", 
+                   "Interviews", 
+                   "Scenes", 
+                   "Shorts", 
+                   "Trailers", 
+                   "Subs",
+                   "Other"]
+    
     for i in range(len(subDir)):
         subPath: str = os.path.join(path,subDir[i])
-        if subDir[i] == "Extras":
-            os.rename(subPath, os.path.join(path, "other"))
         if args.cleanup:
            cleaner(subPath)
+        if subDir[i] == "Extras":
+            os.rename(subPath, os.path.join(path, "Other"))
+            continue
+        if subDir[i] in extrasNames:
+            continue
         not_Nested(subPath)
         season += 1
 

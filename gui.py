@@ -49,7 +49,7 @@ movieBox = CTkCheckBox(window, text='movie')
 nameEntry = CTkEntry(window, width=120, textvariable="")
 header = CTkLabel(window, text="pyhton function renamer", font=("bold", 13))
 newName = CTkLabel(window, text="enter new name:", font=("bold", 13))
-miscOpptions = CTkLabel(window, text="addtional opptions:", font=("bold", 13))
+miscOpptisons = CTkLabel(window, text="addtional opptions:", font=("bold", 13))
 fileLocation = CTkButton(window, text="Select File location", command=c.fileDialog ,width=50)
 submmitButton = CTkButton(window, text="submit", command=submit ,width=50)
 
@@ -58,7 +58,7 @@ def main()-> None:
     newName.place(relx=0.3, rely=0.2, anchor=CENTER)
     nameEntry.place(relx=0.7, rely=0.2, anchor=CENTER)
     fileLocation.place(relx=0.5, rely=0.4, anchor=CENTER)
-    miscOpptions.place(relx=0.5, rely=0.6, anchor=CENTER)
+    miscOpptisons.place(relx=0.5, rely=0.6, anchor=CENTER)
     movieBox.place(relx=0.7, rely=0.7, anchor=CENTER)
     submmitButton.place(relx=0.5, rely=0.9, anchor=CENTER)
 
