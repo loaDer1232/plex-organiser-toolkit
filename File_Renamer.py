@@ -73,7 +73,8 @@ def nested(subDir: list[str]):
                    "Shorts", 
                    "Trailers", 
                    "Subs",
-                   "Other"]
+                   "Other",
+                   "Specials"]
     
     for i in range(len(subDir)):
         subPath: str = os.path.join(path,subDir[i])

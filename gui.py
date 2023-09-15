@@ -4,7 +4,7 @@ from platform import system
 
 class GUI:
     def __init__(self) -> None:
-        self.file_path: str
+        self.file_path: str = ""
 
     def fileDialog(self)-> str:
         self.file_path = filedialog.askdirectory()
@@ -14,6 +14,7 @@ class GUI:
     
 
 window = CTk()
+window.title("plex file toolkit")
 window.geometry("400x300")
 set_appearance_mode("System") 
 set_default_color_theme("blue")
@@ -48,6 +49,8 @@ def submit()-> None:
     dump = subprocess.run(command)
     return None
 
+
+
 header = CTkLabel(window, text="Pyhton Function Renamer")
 newName = CTkLabel(window, text="Enter New Name:")
 miscOpptions = CTkLabel(window, text="addtional opptions:")
@@ -57,6 +60,7 @@ strictFileMode = CTkCheckBox(window, text='Strict File Mode')
 log = CTkCheckBox(window, text='Log')
 
 nameEntry = CTkEntry(window, width=120, textvariable="")
+fileLocationBox = CTkEntry(window, width=120, textvariable=c.getPath())
 
 fileLocation = CTkButton(window, text="Select File location", command=c.fileDialog ,width=50)
 submmitButton = CTkButton(window, text="Submit", command=submit ,width=50)
@@ -66,6 +70,7 @@ def main()-> None:
     newName.place(relx=0.3, rely=0.2, anchor=CENTER)
     nameEntry.place(relx=0.7, rely=0.2, anchor=CENTER)
     fileLocation.place(relx=0.5, rely=0.4, anchor=CENTER)
+    fileLocationBox.place(relx=0.5, rely=0.5, anchor=CENTER)
     miscOpptions.place(relx=0.5, rely=0.6, anchor=CENTER)
     movieBox.place(relx=0.9, rely=0.7, anchor=CENTER)
     strictFileMode.place(relx=0.5, rely=0.7, anchor=CENTER)
