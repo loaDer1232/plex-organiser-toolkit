@@ -1,4 +1,4 @@
-# plex-organiser-tools
+# plex-organiser-toolkit
 This is an open source tool for renaming tv episodes and movies into the plex format,
 feel free to use it
 ## use:
