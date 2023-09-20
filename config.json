@@ -1,0 +1,25 @@
+{
+    "validFormats": [
+        ".mkv",
+        ".asf", 
+        ".mp4", 
+        ".srt", 
+        "avi", 
+        "mov", 
+        "wmv", 
+        "mpegts", 
+        ""
+    ],
+    "extrasNames": [
+        "Behind The Scenes", 
+        "Deleted Scenes", 
+        "Featurettes", 
+        "Interviews", 
+        "Scenes", 
+        "Shorts", 
+        "Trailers", 
+        "Subs",
+        "Other",
+        "Specials"
+    ]
+}
