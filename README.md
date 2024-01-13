@@ -29,6 +29,7 @@ when using cleanup the allowed file types are:
 |mov|srt|
 |wmv|MPEGTS|
 
+this file types can be edited or appened in the config.json file 
 
 ## Style guide: 
 1. Varibles should be in camelCase and have type hints

@@ -3,7 +3,7 @@ import argparse
 import time
 import json
 
-parser = argparse.ArgumentParser(description="plex formating tool to fix tv file names")
+parser = argparse.ArgumentParser(description="plex formating tool to fix file names")
 group = parser.add_mutually_exclusive_group()
 group.add_argument("-v", "--verbose", help="incresses output verbosity", action="store_true")
 group.add_argument("-q", "--quiet", help="removes console feedback", action="store_true")
@@ -26,7 +26,7 @@ filesDeleted: int = 0
 
 def log():
     with open(f'{rootPath}\log.txt','a') as log:
-        log.write(logStr)
+        log.write(f"{logStr} \n")
 
 def cleaner(fullPath: str):
     global logStr, filesDeleted
@@ -42,20 +42,14 @@ def cleaner(fullPath: str):
         filesDeleted += 1
 
 
-def episode_Format(i: int)-> str:
-    if i < 10:
-        return f"0{i}"
-    else:
-        return str(i)
-
-def season_Format(i: int)-> str:
+def TvFormat(i: int)-> str:
     if i < 10:
         return f"0{i}"
     else:
         return str(i)
     
 def movieFormat(i: int)-> str:
-    if (i == 1) and args.movies:
+    if i == 1:
         return ""
     else:
         return f" {i}"
@@ -64,18 +58,18 @@ def namer(episode: int, ext: str)-> str:
     if args.movies:
         return f"{newName}{movieFormat(episode)}{ext}"
     else:
-        return f"{newName} S{season_Format(season)}E{episode_Format(episode)}{ext}" 
+        return f"{newName} S{TvFormat(season)}E{TvFormat(episode)}{ext}" 
 
 def nested(subDir: list[str]):
     global season
-    extrasNames = config['extraNames']
+    extrasNames = config['extrasNames']
     for i in range(len(subDir)):
         subPath: str = os.path.join(path,subDir[i])
         if args.cleanup:
            cleaner(subPath)
         if subDir[i] == "Extras":
             os.rename(subPath, os.path.join(path, "Other"))
-            logStr += "renamed Extras to Other\n"
+            logStr += "Renamed Extras to Other\n"
             continue
         if subDir[i] in extrasNames:
             continue
@@ -93,8 +87,8 @@ def not_Nested(fullPath: str):
         newFileName = namer(episode, ext[1])
         os.rename(os.path.join(fullPath, file), os.path.join(fullPath, newFileName))
         if args.verbose:
-            print(f"renamed {file} to {newFileName}")
-        logStr += f"renamed {file} to {newFileName}\n"
+            print(f"Renamed {file} to {newFileName}")
+        logStr += f"Renamed {file} to {newFileName}\n"
         episode += 1
     totalEpisodes += (episode - 1)
 
@@ -109,8 +103,9 @@ for path, subDir, files in os.walk(rootPath):
         nested(subDir)
     if args.quiet:
         exit()
+    endStr = f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders in {time.time() - start_time} Seconds!!"
     if args.log:
-        logStr += f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders in {time.time() - start_time} Seconds!!"
+        logStr += endStr
         log()
-    input(f"Renamed {totalEpisodes} files and {filesDeleted} deleted in {season - 1} folders in {time.time() - start_time} Seconds!!")
+    input(endStr)
     exit()
